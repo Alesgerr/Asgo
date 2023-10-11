@@ -1,0 +1,84 @@
+
+.section-header {
+   padding: 2rem 1rem;
+}
+.h5 {
+   margin: 0;
+}
+.flashCard {
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 10px;
+   background: #fff;
+   border-radius: 20px;
+}
+.flashCard .img-div{
+   padding: 1rem;
+}
+.flashCard img {
+   width: 100%;
+   height: 200px;
+   object-fit: contain;
+   padding: 1rem
+}
+.flashCard p {
+   margin: 0;
+}
+.flashCard .title-box {
+   padding: 1rem;
+
+}
+.flashCard .rating-box {
+   padding: 1rem;
+}
+.flashCard .price-box {
+   padding: 1rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.flashCard .btn-cart {
+   background: transparent;
+   border: none;
+   outline: none;
+}
+.reversed-link {
+   text-underline: none;
+   background: linear-gradient(to right,currentColor,currentColor) 0 min(100%,1.35em) / 0 1px no-repeat;
+   transition: background-size .3s ease-in-out;
+}
+.circle-chevron {
+   width: 30px;
+   height: 30px;
+   border-radius: 100%;
+   background:#DBDBDB;
+   flex-shrink: 0;
+   place-items: center;
+   transition: all .2s ease-in-out;
+   display: grid;
+   color: #000;
+}
+.text-with-icon {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   color: #565656;
+   font-size: 13px;
+   gap: 0.5rem;
+}
+.flashCard .img-div:hover {
+   transform: scale(1.1);
+   transition: all 0.5s ease-in-out;
+}
+
+@media (min-width: 468px) {
+   .flashCard .title-box h6 {
+ 
+   }
+}
+@media (max-width: 468px) {
+   .flashCard .title-box {
+      padding: 13px;
+   }
+   .flashCard .title-box h6 {
+      font-size: 13px;
+   }
+}

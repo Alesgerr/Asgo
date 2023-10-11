@@ -1,0 +1,24 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300&family=Pathway+Extreme:wght@100&family=Poppins:ital,wght@0,600;0,700;0,800;1,700;1,900&family=Roboto+Slab:wght@800&family=Ubuntu&display=swap');
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body {
+  background-color: #F0F0F0;
+}
+:root {
+  --background-color: #fff;
+  --text-color: #000;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}

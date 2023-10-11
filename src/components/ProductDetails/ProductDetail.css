@@ -1,0 +1,107 @@
+.product-detail {
+}
+h1 {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+.product-detail .box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 20px;
+}
+.product-detail .img-box {
+}
+.product-detail img {
+  width: 100%;
+}
+.product-detail .title-box {
+}
+.product-detail .title-box .title {
+  font-size: 30px;
+  padding: 1rem 0;
+}
+.product-detail .title-box span {
+  font-size: 20px;
+}
+.product-detail .price-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.product-detail .price-box .price {
+  display: flex;
+}
+.product-detail .price-box .price span {
+  margin: 0 5px;
+}
+.product-detail .price-box span {
+  display: flex;
+  align-items: center;
+}
+.product-detail .price-box .rating svg {
+  margin: 0 5px;
+}
+.product-detail .quantity-selector {
+  height: 40px;
+  border: 1px solid gray;
+  background: #fff;
+  color: #272727;
+  border-radius: 5px;
+  border-width: 1px;
+  display: inline-flex;
+}
+.product-detail .quantity-selector-btn {
+  text-align: inherit;
+  background-color: #0000;
+  background-image: none;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  border: none;
+}
+.product-detail .quantity-selector__input {
+   text-align: center;
+   border: none;
+}
+.product-detail .product-info-btn-box {
+   display: grid;
+   align-items: start;
+   grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+   gap: 1rem;
+   padding: 1rem 0;
+}
+.product-detail .product-info-btn-box .product-info-btn {
+   font-size: 15px;
+   border: none;
+   padding: 11px 11px;
+   border: 1px solid;
+   transition: all 0.3s ease-in-out;
+
+}
+.product-detail .product-info-btn-box .add-cart-btn {
+   background-color: #83A190;
+   color: #fff;
+
+}
+.product-detail .product-info-btn-box .add-cart-btn:hover {
+   background-color: #fff;
+   color: #83A190;
+}
+.product-detail .product-info-btn-box .payment-btn {
+   background-color: #272727;
+   color: #fff;
+}
+.product-detail .product-info-btn-box .payment-btn:hover {
+   background-color: #fff;
+   color: #272727;
+}
+.product-detail .form-control-p-info {
+   padding: 0;
+   border: none;
+}
+.product-detail .text-subdued {
+   padding-bottom: 0.5rem;
+}
