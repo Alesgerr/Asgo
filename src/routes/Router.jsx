@@ -10,6 +10,7 @@ import ProductDetail from "../components/ProductDetails/ProductDetail";
 import CategoryDetail from "../components/Category/CategoryDetail";
 import Categories from "../components/Category/Categories";
 import Footer from "../components/Footer/Footer";
+import Cart from "../pages/Cart/Cart";
 
 export default function Router() {
   const Layout = () => {
@@ -55,6 +56,10 @@ export default function Router() {
           path: "category/:id",
           element: <CategoryDetail />,
         },
+        {
+          path: 'cart',
+          element: <Cart />
+        }
       ],
     },
     {

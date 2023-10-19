@@ -4,7 +4,6 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 body {
   background-color: #F0F0F0;
@@ -21,4 +20,7 @@ ul {
 }
 a {
   text-decoration: none;
+}
+.form-control {
+  box-shadow: none !important;
 }

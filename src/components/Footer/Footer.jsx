@@ -8,6 +8,7 @@ import {
 
 
 import "./Footer.css";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -15,12 +16,22 @@ const Footer = () => {
       <div className="container">
          <div className="contentWrapper">
             <ul className="menuItems">
-            <li className="menuItem">Terms Of Use</li>
-            <li className="menuItem">Privacy-Policy</li>
-            <li className="menuItem">About</li>
-            <li className="menuItem">Blog</li>
-            <li className="menuItem">FAQ</li>
-         </ul>
+               <li className="menuItem">
+               <Link className='text-dark' to='/privacy-policy'>Privacy-Policy</Link>
+               </li>
+               <li className="menuItem">
+                  <Link className='text-dark' to='/contact'>Contact</Link>
+               </li>
+               <li className="menuItem">
+                  <Link className='text-dark' to='/about'>About</Link>
+               </li>
+               <li className="menuItem">
+               <Link className='text-dark' to='/blog'>Blog</Link>
+               </li>
+               <li className="menuItem">
+               <Link className='text-dark' to='/faq'>FAQ</Link>
+               </li>
+            </ul>
          <div className="infoText">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
             do eiusmod tempor incididunt ut labore et dolore magna

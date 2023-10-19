@@ -1,24 +1,32 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './ProductDetail.css'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import {AiFillStar} from 'react-icons/ai'
+import Carousel from 'react-gallery-carousel';
+import 'react-gallery-carousel/dist/index.css';
+
 const ProductDetail = () => {
    const {id} = useParams()
    const [product, setProduct] = useState([])
+   const [img, setImg] = useState([])
    useEffect(() => {
       const getProduct = async () => {
          const res = await axios.get(`https://dummyjson.com/products/${id}`)
          setProduct(res.data)
+         setImg(res.data.images)
       }
       getProduct()
       
    },[id])
-   console.log(product);
+   console.log(img);
+   const images = img.map((number) => ({
+      src: `${number}`
+    }));
 
   return (
     <div className='product-detail'>
@@ -26,19 +34,28 @@ const ProductDetail = () => {
          <div className="row">
             <div className="col-lg-6">
                <div className="box">
-                  <div className="img-box">
-                     {product.images && product.images.length > 0 ? (
+                  <div className="img-box bg-danger">
+                     {/* {product.images && product.images.length > 0 ? (
                      <img src={product.images[1]} alt="" />
                      ) : (
                      <p>Product image not available.</p>
-                     )}
+                     )} */}
+            
+                      {/* {img?.map((item, i) => (
+                        <div key={i}>
+                           <img src={item} alt="" />
+                        </div>
+                      ) )} */}
+                        <Carousel widgetsHasShadow='false' shouldMaximizeOnClick='true' shouldMinimizeOnClick='true' shouldMinimizeOnSwipeDown='true' playIcon='' objectFit='contain' thumbnailWidth='20%' thumbnailHeight='15%' images={images} style={{ height: "350px", width: "100%", background: '#fff' }} />
                   </div>
                </div>
             </div>
             <div className="col-lg-6">
                <div className="box">
                   <div className="product-info">
-                     <p className=''>{product.brand}</p>
+                     <p className=''>
+                     <Link className='text-dark' to={`/category/${product.category}`}>{product.brand}</Link>
+                     </p>
                      <div className="title-box">
                         <h1 className='title'>{product.title}</h1>
                         
