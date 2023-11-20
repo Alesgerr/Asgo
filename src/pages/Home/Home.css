@@ -204,6 +204,10 @@
 .sect-2 .banner {
   max-height: 500px !important;
 }
+.home-slider-img {
+  height: 335px;
+  width: 100%;
+}
 /* ! Section 3 */
 .sect-3 {
   overflow: hidden;
@@ -234,7 +238,10 @@
   .sect-2 .banner {
     max-height: max-content !important;
   }
-  
+  .home-slider-img {
+    max-width: 100% !important;
+    height: auto;
+  }
 }
 /* @media (max-width: 1115px) {
   .sect-2 .banner-cat {

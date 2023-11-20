@@ -87,7 +87,7 @@ const FlashCard = () => {
   };
 
   return (
-    <div className="container-md">
+    <div className="container-md flashcard">
       {mobileProducts.map((group, groupIndex) => (
         <div key={groupIndex}>
           <div className="section-header d-flex align-items-center justify-content-between">

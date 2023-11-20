@@ -44,7 +44,7 @@ const HomeSlider = () => {
       <Slider {...settings}>
           {sliderArr?.map((item) => (
             <div key={item.id}  >
-               <img className="" style={{height: "355px", width: "100%"}} src={item.img} alt="" />
+               <img className="home-slider-img" src={item.img} alt="" />
             </div>
           ))}
         </Slider>
