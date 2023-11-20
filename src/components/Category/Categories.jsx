@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from 'react-helmet';
+import Skeleton from "react-loading-skeleton";
 
 const Categories = () => {
   const [datas, setDatas] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     const res = await fetch("https://dummyjson.com/products/categories");
@@ -17,7 +20,7 @@ const Categories = () => {
    //    allowedCategories.includes(category)
    //  );
     setDatas(data);
-    console.log(data);
+    setLoading(false)
   };
   const categoryImageUrls = {
    "smartphones": "https://i.dummyjson.com/data/products/2/1.jpg",
@@ -44,10 +47,53 @@ const Categories = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  const pageTitle = 'Explore Our Categories - Find Products You Love';
+  const pageDescription = 'Browse through our wide range of product categories and discover your favorite items.';
+  const Loading = () => {
+    return(
+       <>
+       <div className='skeleton-loading'>
+           <div className="container-md">
+            <div className='row g-1'>
+                <div className='col-md-3 col-sm-4 col-6'>
+                  <Skeleton height={200} style={{width: "100%", height: "max-content"}}/>
+                </div>
+                <div className='col-md-3 col-sm-4 col-6'>
+                  <Skeleton height={200} style={{width: "100%", height: "max-content"}}/>
+  
+                </div>
+                <div className='col-md-3 col-sm-4 col-6'>
+                  <Skeleton height={200} style={{width: "100%", height: "max-content"}}/>
+                </div>
+                <div className='col-md-3 col-sm-4 col-6'>
+                  <Skeleton height={200} style={{width: "100%", height: "max-content"}}/>
+                </div>
+                <div className='col-md-3 col-sm-4 col-6'>
+                  <Skeleton height={200} style={{width: "100%", height: "max-content"}}/>
+                </div>
+                <div className='col-md-3 col-sm-4 col-6'>
+                  <Skeleton height={200} style={{width: "100%", height: "max-content"}}/>
+                </div>
+                <div className='col-md-3 col-sm-4 col-6'>
+                  <Skeleton height={200} style={{width: "100%", height: "max-content"}}/>
+                </div>
+                <div className='col-md-3 col-sm-4 col-6'>
+                  <Skeleton height={200} style={{width: "100%", height: "max-content"}}/>
+                </div>
+            </div>
+           </div>
+       </div>
+     </>
+    )
+    }
   return (
     <div className="mt-3">
+       <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+      </Helmet>
       <div className="container">
-        <div className="row g-2">
+        {loading ? <Loading /> : <div className="row g-2">
           {datas?.map((item, i) => (
             <div className="col-lg-3 col-md-4 col-6" key={i}>
               <Link to={`/category/${item}`}>
@@ -66,7 +112,7 @@ const Categories = () => {
               </Link>
             </div>
           ))}
-        </div>
+        </div>}
       </div>
     </div>
   );

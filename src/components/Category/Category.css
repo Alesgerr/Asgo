@@ -1,0 +1,30 @@
+.category-detail .category-header {
+   padding: 1rem 0;
+}
+.category-detail .category-header .category-head-title {
+   text-transform: uppercase;
+}
+.category-detail .category-header .category-head-title h1 {
+   text-align: center;
+   font-size: 2rem;
+   letter-spacing: 0.3rem;
+}
+.category-detail .flashCard .img-div {
+   padding: 0;
+}
+.category-detail .flashCard img,
+.category-detail .flashCard .price-box,
+.category-detail .flashCard .title-box {
+   padding: 10px;
+}
+.category-detail .flashCard .title-box{
+   height: 60px;
+}
+.flashCard .btn-cart:hover {
+   color: #E50914;
+}
+@media (max-width: 768px) {
+   .home-categories {
+      padding: 1rem;
+   }
+}

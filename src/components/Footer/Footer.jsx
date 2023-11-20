@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-   <footer className="footer">
+   <footer className='footer'>
       <div className="container">
          <div className="contentWrapper">
             <ul className="menuItems">

@@ -94,16 +94,16 @@
 }
 .home-cat .cat-img {
   width: 100%;
-  height: max-content;
+  height: 160px;
+  object-fit: cover;
   filter: brightness(50%);
-  
+  border-radius: 10px;
 }
 .home-cat .box {
   position: absolute;
   z-index: 111111;
   top: 5%;
   left: 5%;
-  font-weight: 900;
   opacity: 1;
   text-align: center;
   display: flex;
@@ -111,7 +111,7 @@
   color: #000;
   font-weight: bolder;
   text-transform: uppercase;
-  
+  font-size: 10px;  
 }
 .home-cat .home-cat-box {
   color: #fff;
@@ -140,14 +140,172 @@
 .home-slider .slick-next {
   right: 10px;
 }
+.sect-2 .banner-box {
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  max-height: 430px;
+}
+.sect-2 .banner-box2 {
+  /* padding: 1rem; */
+  /* background: white; */
+  /* border-radius: 10px; */
+  /* overflow: hidden; */
+  /* max-height: 361px; */
+}
+.cat-list {
+  max-height: max-content;
+  background: white;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.sect-2  ::-webkit-scrollbar {
+  width: 5px;
+}
+.sect-2  ::-webkit-scrollbar-thumb {
+  display: none;
+}
+.sect-2 .catalog:hover  ::-webkit-scrollbar-thumb {
+  background: #E50914; 
+  border-radius: 5px;
+  padding: 10px;
+  display: block;
+}
+.sect-2 .cat-list li {
+  padding: 5px 0;
+  cursor: pointer;
+}
+.sect-2 .cat-list li a {
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  /* letter-spacing: 1.1px; */
+  align-items: center;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+.sect-2 .cat-list li a svg {
+  color: #EDEDED;
+}
+
+.sect-2 .cat-list li:hover a,
+.sect-2 .cat-list li:hover svg {
+  color: #E50914;
+} 
+.sect-2 .catalog {
+  display: none;
+}
+.sect-2 .mob-cat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sect-2 .banner {
+  max-height: 500px !important;
+}
 /* ! Section 3 */
 .sect-3 {
   overflow: hidden;
   padding: 2rem 0;
 }
-
+.sect-3 .flash-card {
+  padding: 0 5px;
+}
 @media (min-width: 1366px) {
    .menu-holder {
       display: block;
    }
+}
+@media (min-width: 992px) {
+  .sect-2 .catalog{
+    display: block;
+  }
+
+ 
+}
+@media (max-width: 992px) {
+  .sect-2 .banner-cat {
+    display: none;
+  }
+  .sect-2 .mob-cat-list{
+    display: block;
+  }
+  .sect-2 .banner {
+    max-height: max-content !important;
+  }
+  
+}
+/* @media (max-width: 1115px) {
+  .sect-2 .banner-cat {
+    max-height: 385px;
+  }
+  
+} */
+/* Temel Stiller */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+}
+.subs {
+  margin: 2rem 0;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.input-group button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #888;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.5s;
+}
+
+.input-group button:hover {
+  background-color: var(--main-color);
+}
+
+/* İletişim Bilgileri */
+.contact-info {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+/* Hata Mesajları */
+.error-message {
+  color: #ff0000;
+  margin-top: 5px;
+}
+
+/* Başlık Stili */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Başlık İkinci Stil */
+.sub-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #666;
 }

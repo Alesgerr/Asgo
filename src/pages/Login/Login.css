@@ -1,0 +1,55 @@
+#auth-form {
+   padding: 1rem 0;
+   margin: auto;
+   text-align: center;
+}
+.auth-form {
+   padding: 1rem;
+   background-color: #fff;
+   border-radius: 10px;
+}
+#auth-form h3 {
+   padding: 1rem 0;
+}
+.login-btn-div {
+   display: flex;
+
+   padding: 1rem 0;
+}
+.login-btn-div button {
+   width: 100%;
+   color: #fff;
+   border: none;
+   padding: 5px 10px;
+   transition: all 0.5s ease;
+   border-radius: 5px;
+   background-color: var(--text-color);
+
+}
+.login-btn-div button:hover {
+   width: 100%;
+   color: #fff;
+   border: none;
+   padding: 5px 10px;
+   background-color: var(--main-color);
+
+}
+.auth-form input[type="file"] {
+   color: #000;
+}
+.custom-file-input {
+   /* Görünümünü özelleştirin */
+   background-color: #f0f0f0;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   cursor: pointer;
+   color: #333;
+   font-size: 14px;
+ }
+ 
+ /* Dosya seçildiğinde renk değişikliği yapmak için */
+ .custom-file-input:active,
+ .custom-file-input:focus {
+   border-color: var(--main-color); /* Örnek olarak mavi renk */
+ }

@@ -12,326 +12,157 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { BsCart4 } from "react-icons/bs";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
+import { Link, NavLink, useParams } from "react-router-dom";
+import { useState } from "react";
+import { cartActions } from "../../redux/slices/cartSlice";
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  const totalPrice = useSelector(state => state.cart.totalAmount);
+  const totalQuantity = useSelector(state => state.cart.totalQuantity);
+  const [product, setProduct] = useState([]);
+  console.log(totalQuantity);
+  console.log(product);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setProduct(cart.cartItems);
+  }, [cart]);
+  console.log(totalPrice);
+  const EmptyCart = () => {
+    return (
+      <div className="emptyCart">
+        <div className="icon-box">
+          <BsCart4 />
+        </div>
+        <div className="emptyCart-title">
+          <h3>Empty Cart</h3>
+        </div>
+        <Link className="text-decoration-none" to="/shop">
+          Continue Shopping
+        </Link>
+      </div>
+    );
+  };
+
   return (
-    <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-3 h-100">
-        <MDBRow className="justify-content-center align-items-center h-100">
-          <MDBCol>
-            <MDBCard>
-              <MDBCardBody className="p-4">
-                <MDBRow>
-                  <MDBCol lg="7">
-                    <MDBTypography tag="h5">
-                      <a href="#!" className="text-body">
-                        <MDBIcon fas icon="long-arrow-alt-left me-2" /> Continue
-                        shopping
-                      </a>
-                    </MDBTypography>
-
-                    <hr />
-
-                    <div className="d-flex justify-content-between align-items-center mb-4">
-                      <div>
-                        <p className="mb-1">Shopping cart</p>
-                        <p className="mb-0">You have 4 items in your cart</p>
-                      </div>
-                      <div>
-                        <p>
-                          <span className="text-muted">Sort by:</span>
-                          <a href="#!" className="text-body">
-                            price
-                            <MDBIcon fas icon="angle-down mt-1" />
-                          </a>
-                        </p>
+    <div className="container">
+      {product.length === 0 ? (
+        <EmptyCart />
+      ) : (
+        <div className="row g-3">
+          <div className="breadcrumb">
+            <ul>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink>Shopping Cart</NavLink>
+              </li>
+            </ul>
+          </div>
+          <h1 className="shopping-cart-head">Shopping Cart</h1>
+          <div className="col-lg-8">
+            <div className="test">
+              <div className="cart-all">
+                {product?.map((item) => {
+                  return (
+                    <div key={item.id}>
+                      <div className="cart">
+                        <div className="cart-img-box">
+                          <Link to={`/product/${item.id}`}>
+                            <div className="cart-img">
+                              <img src={item.image[0]} alt="" />
+                            </div>
+                          </Link>
+                        </div>
+                        <div className="cart-details w-75">
+                          <div className="row">
+                            <div className="col-md-6 col-9 d-flex align-items-center">
+                              <div className="cart-title">
+                                <Link>
+                                  <p>{item.title}</p>
+                                </Link>
+                              </div>
+                            </div>
+                            <div className="col-md-6 col-3">
+                              <div className="cart-body">
+                                <div className="cart-quantity quantity-selector">
+                                  <button onClick={() => dispatch(cartActions.decrementItem(item.id))}>-</button>
+                                  <span>{item.quantity}</span>
+                                  <button onClick={() => dispatch(cartActions.incrementItem(item.id))}>+</button>
+                                </div>
+                                <div className="cart-price">
+                                  <p>
+                                    <span>${item.price}</span>
+                                  </p>
+                                </div>
+                                <div className="cart-delete">
+                                  <button onClick={() => dispatch(cartActions.removeItem(item.id))}>
+                                    <RiDeleteBin5Line />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="detail-mobile">
+                              <div className="detail-mob-quantity quantity-selector">
+                              <button className="quantity-selector-btn" onClick={() => dispatch(cartActions.decrementItem(item.id))}>-</button>
+                                  <span>{item.quantity}</span>
+                                  <button className="quantity-selector-btn" onClick={() => dispatch(cartActions.incrementItem(item.id))}>+</button>
+                              </div>
+                              <p>
+                                <span>${item.price}</span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    <MDBCard className="mb-3">
-                      <MDBCardBody>
-                        <div className="d-flex justify-content-between">
-                          <div className="d-flex flex-row align-items-center">
-                            <div>
-                              <MDBCardImage
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                fluid
-                                className="rounded-3"
-                                style={{ width: "65px" }}
-                                alt="Shopping item"
-                              />
-                            </div>
-                            <div className="ms-3">
-                              <MDBTypography tag="h5">
-                                Iphone 11 pro
-                              </MDBTypography>
-                              <p className="small mb-0">256GB, Navy Blue</p>
-                            </div>
-                          </div>
-                          <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
-                              <MDBTypography
-                                tag="h5"
-                                className="fw-normal mb-0"
-                              >
-                                2
-                              </MDBTypography>
-                            </div>
-                            <div style={{ width: "80px" }}>
-                              <MDBTypography tag="h5" className="mb-0">
-                                $900
-                              </MDBTypography>
-                            </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
-                              <MDBIcon fas icon="trash-alt" />
-                            </a>
-                          </div>
-                        </div>
-                      </MDBCardBody>
-                    </MDBCard>
-
-                    <MDBCard className="mb-3">
-                      <MDBCardBody>
-                        <div className="d-flex justify-content-between">
-                          <div className="d-flex flex-row align-items-center">
-                            <div>
-                              <MDBCardImage
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp"
-                                fluid
-                                className="rounded-3"
-                                style={{ width: "65px" }}
-                                alt="Shopping item"
-                              />
-                            </div>
-                            <div className="ms-3">
-                              <MDBTypography tag="h5">
-                                Samsung galaxy Note 10
-                              </MDBTypography>
-                              <p className="small mb-0">256GB, Navy Blue</p>
-                            </div>
-                          </div>
-                          <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
-                              <MDBTypography
-                                tag="h5"
-                                className="fw-normal mb-0"
-                              >
-                                2
-                              </MDBTypography>
-                            </div>
-                            <div style={{ width: "80px" }}>
-                              <MDBTypography tag="h5" className="mb-0">
-                                $900
-                              </MDBTypography>
-                            </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
-                              <MDBIcon fas icon="trash-alt" />
-                            </a>
-                          </div>
-                        </div>
-                      </MDBCardBody>
-                    </MDBCard>
-
-                    <MDBCard className="mb-3">
-                      <MDBCardBody>
-                        <div className="d-flex justify-content-between">
-                          <div className="d-flex flex-row align-items-center">
-                            <div>
-                              <MDBCardImage
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp"
-                                fluid
-                                className="rounded-3"
-                                style={{ width: "65px" }}
-                                alt="Shopping item"
-                              />
-                            </div>
-                            <div className="ms-3">
-                              <MDBTypography tag="h5">
-                                Canon EOS M50
-                              </MDBTypography>
-                              <p className="small mb-0">Onyx Black</p>
-                            </div>
-                          </div>
-                          <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
-                              <MDBTypography
-                                tag="h5"
-                                className="fw-normal mb-0"
-                              >
-                                1
-                              </MDBTypography>
-                            </div>
-                            <div style={{ width: "80px" }}>
-                              <MDBTypography tag="h5" className="mb-0">
-                                $1199
-                              </MDBTypography>
-                            </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
-                              <MDBIcon fas icon="trash-alt" />
-                            </a>
-                          </div>
-                        </div>
-                      </MDBCardBody>
-                    </MDBCard>
-
-                    <MDBCard className="mb-3">
-                      <MDBCardBody>
-                        <div className="d-flex justify-content-between">
-                          <div className="d-flex flex-row align-items-center">
-                            <div>
-                              <MDBCardImage
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
-                                fluid
-                                className="rounded-3"
-                                style={{ width: "65px" }}
-                                alt="Shopping item"
-                              />
-                            </div>
-                            <div className="ms-3">
-                              <MDBTypography tag="h5">
-                                MacBook Pro
-                              </MDBTypography>
-                              <p className="small mb-0">1TB, Graphite</p>
-                            </div>
-                          </div>
-                          <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
-                              <MDBTypography
-                                tag="h5"
-                                className="fw-normal mb-0"
-                              >
-                                1
-                              </MDBTypography>
-                            </div>
-                            <div style={{ width: "80px" }}>
-                              <MDBTypography tag="h5" className="mb-0">
-                                $1799
-                              </MDBTypography>
-                            </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
-                              <MDBIcon fas icon="trash-alt" />
-                            </a>
-                          </div>
-                        </div>
-                      </MDBCardBody>
-                    </MDBCard>
-                  </MDBCol>
-
-                  <MDBCol lg="5">
-                    <MDBCard className="bg-primary text-white rounded-3">
-                      <MDBCardBody>
-                        <div className="d-flex justify-content-between align-items-center mb-4">
-                          <MDBTypography tag="h5" className="mb-0">
-                            Card details
-                          </MDBTypography>
-                          <MDBCardImage
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                            fluid
-                            className="rounded-3"
-                            style={{ width: "45px" }}
-                            alt="Avatar"
-                          />
-                        </div>
-
-                        <p className="small">Card type</p>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-mastercard fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-visa fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-amex fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-paypal fa-2x me-2" />
-                        </a>
-
-                        <form className="mt-4">
-                          <MDBInput
-                            className="mb-4"
-                            label="Cardholder's Name"
-                            type="text"
-                            size="lg"
-                            placeholder="Cardholder's Name"
-                            contrast
-                          />
-
-                          <MDBInput
-                            className="mb-4"
-                            label="Card Number"
-                            type="text"
-                            size="lg"
-                            minLength="19"
-                            maxLength="19"
-                            placeholder="1234 5678 9012 3457"
-                            contrast
-                          />
-
-                          <MDBRow className="mb-4">
-                            <MDBCol md="6">
-                              <MDBInput
-                                className="mb-4"
-                                label="Expiration"
-                                type="text"
-                                size="lg"
-                                minLength="7"
-                                maxLength="7"
-                                placeholder="MM/YYYY"
-                                contrast
-                              />
-                            </MDBCol>
-                            <MDBCol md="6">
-                              <MDBInput
-                                className="mb-4"
-                                label="Cvv"
-                                type="text"
-                                size="lg"
-                                minLength="3"
-                                maxLength="3"
-                                placeholder="&#9679;&#9679;&#9679;"
-                                contrast
-                              />
-                            </MDBCol>
-                          </MDBRow>
-                        </form>
-
-                        <hr />
-
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Subtotal</p>
-                          <p className="mb-2">$4798.00</p>
-                        </div>
-
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Shipping</p>
-                          <p className="mb-2">$20.00</p>
-                        </div>
-
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Total(Incl. taxes)</p>
-                          <p className="mb-2">$4818.00</p>
-                        </div>
-
-                        <MDBBtn color="info" block size="lg">
-                          <div className="d-flex justify-content-between">
-                            <span>$4818.00</span>
-                            <span>
-                              Checkout{" "}
-                              <i className="fas fa-long-arrow-alt-right ms-2"></i>
-                            </span>
-                          </div>
-                        </MDBBtn>
-                      </MDBCardBody>
-                    </MDBCard>
-                  </MDBCol>
-                </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </section>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          {product.length !== 0 && (
+            <div className="col-lg-4">
+              {/* <h5>Sebetdeki Mehsullar</h5> */}
+                <div className="wrapper">
+                  {/* Her bir ürünün bilgisi */}
+                  <div className="about">
+                    <div className="price">
+                      <p>Total Quantity :</p>
+                      <p>{totalQuantity}</p>
+                    </div>
+                  </div>
+                  <div className="total">
+                    <p>Subtotal :</p>
+                    <span>${totalPrice}</span>
+                  </div>
+                  <div className="checkout">
+                {/* {user ? ( */}
+                  {/* <div>
+                    <Link><button>Sifarişi Rəsmiləşdir</button></Link>
+                  </div> */}
+                {/* ) : ( */}
+                  <div className="cart-checkout">
+                    <Link to='/checkout'><button type="button" className="checkout-btn cart-btn">Place an order</button></Link>
+                  </div>
+                {/* )} */}
+              </div>
+                </div>
+              
+              {/* Siparişi rəsmiləşdirme düğmesi */}
+              
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 

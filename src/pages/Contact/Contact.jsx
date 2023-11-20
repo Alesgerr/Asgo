@@ -7,9 +7,16 @@ import {
   MDBValidation,
   MDBValidationItem,
 } from "mdb-react-ui-kit";
+import { Helmet } from 'react-helmet';
 const Contact = () => {
+  const pageTitle = 'Contact Us - Get in Touch with Our Team';
+  const pageDescription = 'Contact our team for inquiries, support, or any questions you may have.';
   return (
     <div className="contact mt-3">
+        <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+      </Helmet>
       <div className="container">
         <MDBValidation noValidate id='form' className='text-center mx-auto' style={{ width: '100%', maxWidth: '300px' }}>
           <h2>Contact us</h2>

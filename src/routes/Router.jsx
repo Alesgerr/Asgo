@@ -5,67 +5,60 @@ import Home from "../pages/Home/Home";
 import Profile from "../pages/Profile/Profile";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductDetail from "../components/ProductDetails/ProductDetail";
 import CategoryDetail from "../components/Category/CategoryDetail";
 import Categories from "../components/Category/Categories";
 import Footer from "../components/Footer/Footer";
 import Cart from "../pages/Cart/Cart";
+import Shop from "../pages/Shop/Shop";
+import Checkout from "../pages/Checkout/Checkout";
+import Register from "../pages/Register/Register";
+import ProtectedRoute from "./ProtectedRoute";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "../pages/Login/Login";
+import ForgotPassword from "../pages/Profile/ForgotPassword";
+import SearchPage from "../components/ProductPage/SearchPage";
 
 export default function Router() {
-  const Layout = () => {
-    return (
-      <>
-        <Header />
-        <Outlet />
-        <Footer />
-      </>
-    );
-  };
-
-  const BrowserRoutes = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-        },
-        {
-          path: "categories",
-          element: <Categories />,
-        },
-        {
-          path: "contact",
-          element: <Contact />,
-        },
-        {
-          path: "about",
-          element: <About />,
-        },
-        {
-          path: "profile",
-          element: <Profile />,
-        },
-        {
-          path: "product/:id",
-          element: <ProductDetail />,
-        },
-        {
-          path: "category/:id",
-          element: <CategoryDetail />,
-        },
-        {
-          path: 'cart',
-          element: <Cart />
-        }
-      ],
-    },
-    {
-      path: "*",
-      element: <Page404 />,
-    },
-  ]);
-  return <RouterProvider router={BrowserRoutes} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="about" element={<About />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="product/:id" element={<ProductDetail />} />
+          <Route path="category/:id" element={<CategoryDetail />} />
+          <Route path="cart" element={<Cart />} />
+          <Route
+            path="checkout"
+            element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="forgotpassword" element={<ForgotPassword />} />
+        </Route>
+        <Route path="*" element={<Page404 />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
+
+const Layout = () => {
+
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};

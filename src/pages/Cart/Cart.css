@@ -1,0 +1,235 @@
+:root {
+  --background-color: #fff;
+  --text-color: #000;
+  --main-color: #e50914;
+}
+p {
+  margin: 0;
+}
+.shopping-cart-head {
+  padding-bottom: 2rem;
+  font-weight: 600;
+}
+.cart {
+  display: flex;
+  align-items: center;
+  padding: 2rem 1rem;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  border-radius: 10px;
+}
+.cart .cart-details {
+  padding: 0 10px;
+}
+.cart .cart-img img {
+  width: 100px;
+  height: 50px;
+  object-fit: contain;
+}
+.cart .cart-title {
+  /* width: 30%; */
+}
+.cart .cart-title p {
+  font-size: 17px;
+  color: #000;
+}
+.cart .cart-quantity {
+  text-align: center;
+  font-size: 18px;
+}
+.cart .cart-quantity input {
+  width: 50px;
+  height: 27px;
+  border-radius: 4.2px;
+  border: solid 2px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  text-align: center;
+}
+.cart .cart-quantity button {
+  background-color: transparent;
+  padding: 10px;
+  color: var(--main-color);
+  border: none;
+}
+
+.cart .cart-delete button {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.cart .cart-delete button svg {
+  color: var(--main-color);
+}
+.cart .cart-price p {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.cart .detail-mobile {
+  display: none;
+}
+.cart .detail-mobile button {
+  background-color: transparent;
+  padding: 10px;
+  color: var(--main-color);
+  border: none;
+}
+.cart-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 768px) {
+  .cart-quantity {
+    display: none;
+  }
+  .cart-price {
+    display: none;
+  }
+  .cart .detail-mobile {
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  .cart-body {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+  .cart .cart-img img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+}
+@media only screen and (max-width: 468px) {
+  .cart .cart-title p {
+    font-size: 13px;
+  }
+  .cart .cart-img img {
+    width: 70px;
+    height: 90px;
+    object-fit: contain;
+  }
+}
+/* _____________________________ */
+.wrapper {
+  padding: 1rem;
+  border: solid 2px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  border-radius: 10px;
+}
+.wrapper .about {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+.wrapper .price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrapper .total {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --------------------------- */
+.emptyCart {
+  padding: 10rem 0;
+  text-align: center;
+}
+.emptyCart .icon-box svg {
+  font-size: 100px;
+}
+.emptyCart .emptyCart-title {
+  padding: 1rem 0;
+}
+.emptyCart a {
+  text-decoration: underline !important;
+}
+/* ---------------------- */
+/* .checkout button {
+  background: var(--main-color);
+  color: white;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: none;
+} */
+.checkout {
+  border-top: 1px solid #e3e3e3;
+}
+.checkout .cart-checkout {
+  padding-top: 15px;
+}
+.checkout-btn {
+  background-color: var(--main-color);
+  color: #fff;
+  border-radius: 5px;
+}
+.cart-btn {
+  font-size: 15px;
+  border: none;
+  padding: 11px 11px;
+  border: 1px solid;
+  transition: all 0.3s ease-in-out;
+}
+.cart-btn:hover {
+  background-color: #272727;
+}
+/* Page Pagination */
+#head-cart ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  margin-bottom: 0;
+  align-items: center;
+  list-style: none;
+}
+#head-cart ul li {
+  font-size: 16px;
+  font-weight: 700;
+  color: #939393;
+  margin: 5px 40px 5px 0;
+  position: relative;
+}
+#head-cart ul li a {
+  font-size: 16px;
+  font-weight: 700;
+  color: #939393;
+  position: relative;
+}
+#head-cart ul li:before {
+  bottom: 7px;
+  transform: rotate(-45deg);
+}
+#head-cart ul li:after {
+  top: 9px;
+  transform: rotate(45deg);
+}
+#head-cart li:after,
+#head-cart ul li:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  border: 1px solid #939393;
+  right: -25px;
+}
+#head-cart ul li:last-child:after,
+ul li:last-child:before {
+  border: none !important;
+}
+
+.quantity-selector {
+  
+}
+.cart-all {
+  overflow: scroll;
+  max-height: 382px;
+  overflow-x: hidden;
+}

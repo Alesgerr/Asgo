@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 const HomeSlider = () => {
+   
    const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       autoplay: true,
       fade: true,
@@ -13,27 +14,37 @@ const HomeSlider = () => {
     const sliderArr = [
       {
          id: 1,
-         img: 'https://www.bakuelectronics.az/assets/cache_image/slider/sentyabr2023/indi-al-slider_1129x530_48f.jpg'
+         img: 'https://www.bakuelectronics.az/assets/cache_image/slider/noyabr2023/BF_macbookair3_1129x530_48f.jpg',
+         category: 'laptops'
+
       },
       {
          id: 2,
-         img: 'https://www.bakuelectronics.az/assets/cache_image/slider/oktyabr2023/530samsung_1129x530_48f.jpg'
+         img: 'https://www.bakuelectronics.az/assets/cache_image/slider/sentyabr2023/indi-al-slider_1129x530_48f.jpg',
+         category: 'furniture'
+         
       },
+    
       {
          id: 3,
-         img: 'https://www.bakuelectronics.az/assets/cache_image/slider/sentyabr2023/philips-slider_1129x530_48f.jpg'
+         img: 'https://www.bakuelectronics.az/assets/cache_image/slider/noyabr2023/BF_iphone14_1129x530_48f.jpg',
+         category: 'laptops'
+
       },
       {
          id: 4,
-         img: 'https://www.bakuelectronics.az/assets/cache_image/slider/sentyabr2023/lg-apple-slider_1129x530_48f.jpg'
+         img: 'https://www.bakuelectronics.az/assets/cache_image/slider/noyabr2023/zero30-1_1129x530_48f.jpg',
+         category: 'smartphones'
+
       }
     ]
+  
   return (
     <div className="home-slider">
       <Slider {...settings}>
           {sliderArr?.map((item) => (
-            <div key={item.id}>
-               <img className="img-fluid" src={item.img} alt="" />
+            <div key={item.id}  >
+               <img className="" style={{height: "355px", width: "100%"}} src={item.img} alt="" />
             </div>
           ))}
         </Slider>
