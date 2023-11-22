@@ -153,6 +153,7 @@ header svg {
 header .searchBar {
   width: 100%;
   height: 60px;
+  border-radius: 10px;
   background-color: white;
   position: absolute;
   top: 100%;

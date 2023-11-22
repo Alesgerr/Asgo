@@ -20,11 +20,13 @@ import axios from "axios";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useState } from "react";
 import { cartActions } from "../../redux/slices/cartSlice";
+import useAuth from "../../custom-hooks/useAuth";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const totalPrice = useSelector(state => state.cart.totalAmount);
-  const totalQuantity = useSelector(state => state.cart.totalQuantity);
+  const { currentUser } = useAuth();
+  const totalPrice = useSelector((state) => state.cart.totalAmount);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const [product, setProduct] = useState([]);
   console.log(totalQuantity);
   console.log(product);
@@ -69,7 +71,7 @@ const Cart = () => {
           <h1 className="shopping-cart-head">Shopping Cart</h1>
           <div className="col-lg-8">
             <div className="test">
-              <div className="cart-all">
+              <div className={product.length > 3 ? "cart-all" : ""}>
                 {product?.map((item) => {
                   return (
                     <div key={item.id}>
@@ -93,9 +95,25 @@ const Cart = () => {
                             <div className="col-md-6 col-3">
                               <div className="cart-body">
                                 <div className="cart-quantity quantity-selector">
-                                  <button onClick={() => dispatch(cartActions.decrementItem(item.id))}>-</button>
+                                  <button
+                                    onClick={() =>
+                                      dispatch(
+                                        cartActions.decrementItem(item.id)
+                                      )
+                                    }
+                                  >
+                                    -
+                                  </button>
                                   <span>{item.quantity}</span>
-                                  <button onClick={() => dispatch(cartActions.incrementItem(item.id))}>+</button>
+                                  <button
+                                    onClick={() =>
+                                      dispatch(
+                                        cartActions.incrementItem(item.id)
+                                      )
+                                    }
+                                  >
+                                    +
+                                  </button>
                                 </div>
                                 <div className="cart-price">
                                   <p>
@@ -103,7 +121,11 @@ const Cart = () => {
                                   </p>
                                 </div>
                                 <div className="cart-delete">
-                                  <button onClick={() => dispatch(cartActions.removeItem(item.id))}>
+                                  <button
+                                    onClick={() =>
+                                      dispatch(cartActions.removeItem(item.id))
+                                    }
+                                  >
                                     <RiDeleteBin5Line />
                                   </button>
                                 </div>
@@ -111,9 +133,23 @@ const Cart = () => {
                             </div>
                             <div className="detail-mobile">
                               <div className="detail-mob-quantity quantity-selector">
-                              <button className="quantity-selector-btn" onClick={() => dispatch(cartActions.decrementItem(item.id))}>-</button>
-                                  <span>{item.quantity}</span>
-                                  <button className="quantity-selector-btn" onClick={() => dispatch(cartActions.incrementItem(item.id))}>+</button>
+                                <button
+                                  className="quantity-selector-btn"
+                                  onClick={() =>
+                                    dispatch(cartActions.decrementItem(item.id))
+                                  }
+                                >
+                                  -
+                                </button>
+                                <span>{item.quantity}</span>
+                                <button
+                                  className="quantity-selector-btn"
+                                  onClick={() =>
+                                    dispatch(cartActions.incrementItem(item.id))
+                                  }
+                                >
+                                  +
+                                </button>
                               </div>
                               <p>
                                 <span>${item.price}</span>
@@ -131,33 +167,36 @@ const Cart = () => {
           {product.length !== 0 && (
             <div className="col-lg-4">
               {/* <h5>Sebetdeki Mehsullar</h5> */}
-                <div className="wrapper">
-                  {/* Her bir ürünün bilgisi */}
-                  <div className="about">
-                    <div className="price">
-                      <p>Total Quantity :</p>
-                      <p>{totalQuantity}</p>
-                    </div>
+              <div className="wrapper">
+                {/* Her bir ürünün bilgisi */}
+                <div className="about">
+                  <div className="price">
+                    <p>Total Quantity :</p>
+                    <p>{totalQuantity}</p>
                   </div>
-                  <div className="total">
-                    <p>Subtotal :</p>
-                    <span>${totalPrice}</span>
-                  </div>
-                  <div className="checkout">
-                {/* {user ? ( */}
-                  {/* <div>
-                    <Link><button>Sifarişi Rəsmiləşdir</button></Link>
-                  </div> */}
-                {/* ) : ( */}
-                  <div className="cart-checkout">
-                    <Link to='/checkout'><button type="button" className="checkout-btn cart-btn">Place an order</button></Link>
-                  </div>
-                {/* )} */}
-              </div>
                 </div>
-              
-              {/* Siparişi rəsmiləşdirme düğmesi */}
-              
+                <div className="total">
+                  <p>Subtotal :</p>
+                  <span>${totalPrice}</span>
+                </div>
+                <div className="checkout">
+                  <div className="cart-checkout">
+                    {currentUser ? (
+                      <Link to="/checkout">
+                        <button type="button" className="checkout-btn cart-btn">
+                          Buy it now
+                        </button>
+                      </Link>
+                    ) : (
+                      <Link to="/login">
+                        <button type="button" className="checkout-btn cart-btn">
+                          Buy it now
+                        </button>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>

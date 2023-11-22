@@ -118,3 +118,6 @@ p {
 .product-detail ._Pfcmb {
   background-color: #fff;
 }
+.slick-slide div {
+  margin: 0 0.2rem;
+}
