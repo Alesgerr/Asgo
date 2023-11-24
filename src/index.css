@@ -80,8 +80,9 @@ a {
 } */
 /* ! Breadcrumb */
 .breadcrumb {
-  padding: 0 15px;
-  margin-bottom: 0;
+  padding: 15px 15px;
+  margin: 0;
+  
 }
 .breadcrumb ul {
   display: flex;

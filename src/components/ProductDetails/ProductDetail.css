@@ -86,7 +86,7 @@ p {
    padding: 11px 11px;
    border: 1px solid;
    transition: all 0.3s ease-in-out;
-
+  width: 100% !important;
 }
 .product-detail .product-info-btn-box .add-cart-btn {
    background-color: #83A190;
@@ -104,6 +104,9 @@ p {
 .product-detail .product-info-btn-box .payment-btn:hover {
    background-color: #fff;
    color: #272727;
+}
+.product-detail .product-info-btn-box .add-cart-btn:hover a {
+  color: #272727 !important;
 }
 .product-detail .form-control-p-info {
    padding: 0;

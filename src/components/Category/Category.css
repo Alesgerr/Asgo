@@ -20,11 +20,16 @@
 .category-detail .flashCard .title-box{
    height: 60px;
 }
+
 .flashCard .btn-cart:hover {
    color: #E50914;
 }
+
 @media (max-width: 768px) {
    .home-categories {
       padding: 1rem;
+   }
+   .search-box {
+      margin-top: 0.5rem;
    }
 }

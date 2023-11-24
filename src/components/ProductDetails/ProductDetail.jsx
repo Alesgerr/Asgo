@@ -14,10 +14,11 @@ import Slider from "react-slick";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slices/cartSlice";
 import Skeleton from "react-loading-skeleton";
+import useAuth from "../../custom-hooks/useAuth";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
-
+  const { currentUser } = useAuth();
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -60,11 +61,11 @@ const ProductDetail = () => {
     window.scrollTo(0, 0);
   }, [product]);
   const handleIncrement = () => {
-    dispatch(cartActions.incrementItem(product.id))
-  }
+    dispatch(cartActions.incrementItem(product.id));
+  };
   const handleDecrement = () => {
-    dispatch(cartActions.decrementItem(product.id))
-  }
+    dispatch(cartActions.decrementItem(product.id));
+  };
   console.log(product);
   const Loading = () => {
     return (
@@ -134,6 +135,11 @@ const ProductDetail = () => {
               <ul>
                 <li>
                   <NavLink to="/">Home</NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/category/${product.category}`}>
+                    {product.category}
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink>{product.title}</NavLink>
@@ -278,12 +284,25 @@ const ProductDetail = () => {
                         >
                           Add to cart
                         </button>
-                        <button
-                          type="button"
-                          className="payment-btn product-info-btn"
-                        >
-                          Buy it now
-                        </button>
+                        {currentUser ? (
+                          <NavLink to="/checkout">
+                            <button
+                              type="button"
+                              className="payment-btn product-info-btn"
+                            >
+                              Buy it now
+                            </button>
+                          </NavLink>
+                        ) : (
+                          <NavLink to="/login">
+                            <button
+                              type="button"
+                              className="payment-btn product-info-btn"
+                            >
+                              Buy it now
+                            </button>
+                          </NavLink>
+                        )}
                       </div>
                     </div>
                   </form>
@@ -311,7 +330,10 @@ const ProductDetail = () => {
                     <split-lines>Related Products</split-lines>
                   </h5>
                 </div>
-                <Link to={`/category/${product.category}`} className="text-with-icon group">
+                <Link
+                  to={`/category/${product.category}`}
+                  className="text-with-icon group"
+                >
                   <span className="reversed-link">View all</span>
                   <span className="circle-chevron group-hover:colors">
                     <svg

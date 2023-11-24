@@ -14,7 +14,7 @@ const Shop = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(""); // Seçilen kategori
   const [originalProducts, setOriginalProducts] = useState([]);
-  const [sortType, setSortType] = useState('');
+  const [sortType, setSortType] = useState("");
   const [loading, setLoading] = useState(true);
 
   const pageTitle = "Our Shop - Best Products";
@@ -100,10 +100,12 @@ const Shop = () => {
     setSortType(selectedSortType);
 
     // Sıralama türüne göre ürünleri sırala
-    if (selectedSortType === 'ascending') {
+    if (selectedSortType === "ascending") {
       setProducts([...products].sort((a, b) => a.price - b.price));
-    } else if (selectedSortType === 'descending') {
+    } else if (selectedSortType === "descending") {
       setProducts([...products].sort((a, b) => b.price - a.price));
+    } else if (selectedSortType === "sort") {
+      setProducts(originalProducts);
     }
   };
   return (
@@ -123,7 +125,7 @@ const Shop = () => {
                   placeholder="Sort by"
                   className="select"
                   value={sortType}
-        onChange={handleChange}
+                  onChange={handleChange}
                 >
                   <option value="">Sorting</option>
                   <option value="ascending">Ascending</option>

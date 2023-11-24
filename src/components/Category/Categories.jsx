@@ -87,7 +87,7 @@ const Categories = () => {
     )
     }
   return (
-    <div className="mt-3">
+    <div className="mt-4">
        <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />

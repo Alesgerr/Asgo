@@ -16,7 +16,7 @@
   font-size: 18px;
 }
 
-.shop .search-box {
+ .search-box {
   width: 100%;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
   padding-left: 2px;
   cursor: pointer;
 }
-.shop .search-box input {
+.search-box input {
   width: 100%;
   border: none;
   outline: none;
