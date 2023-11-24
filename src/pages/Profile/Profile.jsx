@@ -32,7 +32,7 @@ const Profile = () => {
   // const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState(currentUser.displayName || "");
+  const [displayName, setDisplayName] = useState(currentUser?.displayName || "");
   const navigate = useNavigate()
   const handleFileChange = (e) => {
     if (e.target.files[0]) {
