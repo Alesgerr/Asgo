@@ -54,11 +54,11 @@ const Home = () => {
         <div className="skeleton-loadinng mt-3">
           <div className="container">
             <div className="row g-1">
-              <div className="col-md-2 col-sm-4">
-                <Skeleton style={{ width: "100%", height: "500px" }} />
+              <div className="col-lg-9 col-sm-4">
+                <Skeleton style={{ width: "100%", height: "400px" }} />
               </div>
-              <div className="col-md-10 col-sm-4 col-12">
-                <Skeleton style={{ width: "100%", height: "500px" }} />
+              <div className="col-lg-3 col-sm-4">
+                <Skeleton style={{ width: "100%", height: "400px" }} />
               </div>
             </div>
             <div className="row g-1 mt-5">
@@ -153,13 +153,19 @@ const Home = () => {
             <div className="subs">
               <div className="form-container">
                 <div className="title">Subscribe</div>
-                <div className="sub-title">Get the latest discounts and news.</div>
+                <div className="sub-title">
+                  Get the latest discounts and news.
+                </div>
                 <div className="input-group">
                   <input type="email" placeholder="Your Email Address" />
                   <button type="submit">Subscribe</button>
                 </div>
-                <div className="error-message d-none">The email address is not valid.</div>
-                <div className="contact-info">Communication: info@example.com</div>
+                <div className="error-message d-none">
+                  The email address is not valid.
+                </div>
+                <div className="contact-info">
+                  Communication: info@example.com
+                </div>
               </div>
             </div>
           </div>
