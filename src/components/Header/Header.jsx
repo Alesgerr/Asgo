@@ -67,7 +67,6 @@ const Header = () => {
       const data = await res.json();
       setProducts(data.products);
       setLoading(false);
-      console.log(data.products);
     };
     fetchData();
   }, []);

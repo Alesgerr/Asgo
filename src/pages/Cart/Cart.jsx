@@ -28,14 +28,16 @@ const Cart = () => {
   const totalPrice = useSelector((state) => state.cart.totalAmount);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const [product, setProduct] = useState([]);
-  console.log(totalQuantity);
-  console.log(product);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     setProduct(cart.cartItems);
   }, [cart]);
-  console.log(totalPrice);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [product]);
+  
   const EmptyCart = () => {
     return (
       <div className="emptyCart">
@@ -79,7 +81,7 @@ const Cart = () => {
                         <div className="cart-img-box">
                           <Link to={`/product/${item.id}`}>
                             <div className="cart-img">
-                              <img src={item.image[0]} alt="" />
+                                <img src={item?.image[0]} alt="" />
                             </div>
                           </Link>
                         </div>

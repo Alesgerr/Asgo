@@ -5,11 +5,13 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase.config";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import useAuth from "../../custom-hooks/useAuth";
+
 const Login = () => {
+  const {currentUser} = useAuth()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const signIn = async (e) => {
@@ -32,6 +34,11 @@ const Login = () => {
       toast.error("Login failed. Please check your email and password.");
     }
   };
+  useEffect(() => {
+    if(!currentUser) {
+      navigate('/login')
+    }
+  }, [currentUser, navigate])
   return (
     <div>
       <div className="container">

@@ -47,6 +47,9 @@ const Categories = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [datas]);
   const pageTitle = 'Explore Our Categories - Find Products You Love';
   const pageDescription = 'Browse through our wide range of product categories and discover your favorite items.';
   const Loading = () => {

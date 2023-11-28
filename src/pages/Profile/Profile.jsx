@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import useAuth from "../../custom-hooks/useAuth";
@@ -23,20 +23,31 @@ import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import Input from "@mui/joy/Input";
+
 const Profile = () => {
   const { currentUser } = useAuth();
   const [file, setFile] = useState(null);
+  const [fileSelected, setFileSelected] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
-  // const [open2, setOpen2] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState(currentUser?.displayName || "");
-  const navigate = useNavigate()
+  const [displayName, setDisplayName] = useState(
+    currentUser?.displayName || ""
+  );
+  const [test, setTest] = useState([]);
+  const navigate = useNavigate();
+
   const handleFileChange = (e) => {
     if (e.target.files[0]) {
       setFile(e.target.files[0]);
+    }
+    if (e.target.files.length > 0) {
+      setFileSelected(true);
+    } else {
+      setFileSelected(false);
     }
   };
 
@@ -68,14 +79,14 @@ const Profile = () => {
   };
   const logoutHandle = async () => {
     await logout();
-    navigate('/login')
+    navigate("/login");
   };
   const handleResetSumbit = async (e) => {
     e.preventDefault();
     const result = await resetPassword(password);
     if (result) {
       setPassword("");
-      setOpen1(false)
+      setOpen1(false);
     }
   };
   const handleEmailVerification = async () => {
@@ -86,10 +97,14 @@ const Profile = () => {
     await update({
       displayName,
     });
-    setOpen(false)
-    setOpen1(false)
-
+    setOpen(false);
+    setOpen1(false);
+    setOpen2(false);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="user-profile container">
       <h1 className="mx-auto text-center mt-4">Profile Page</h1>
@@ -119,17 +134,21 @@ const Profile = () => {
                   />
                 </label>
               </div>
-              <button
-                className="user-prof-btn"
-                onClick={handleProfileUpdate}
-                disabled={loading}
-              >
-                {loading ? (
-                  <CircularProgress size={24} color="inherit" />
-                ) : (
-                  "Photo Update"
-                )}
-              </button>
+              <div className="prof-btn-box">
+                <button
+                  className={`user-prof-btn ${
+                    fileSelected ? "d-block" : "d-none"
+                  }`}
+                  onClick={handleProfileUpdate}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <CircularProgress size={24} color="inherit" />
+                  ) : (
+                    "Photo Update"
+                  )}
+                </button>
+              </div>
               <div className="user-details">
                 <h2>{currentUser.displayName}</h2>
                 <p>{currentUser.email}</p>
@@ -148,28 +167,70 @@ const Profile = () => {
                       <MdCancel className="prof-badge" />
                     )}
                   </div>
-                  {currentUser?.emailVerified ? (
-                    ""
-                  ) : (
-                    <button
-                      className="prof-btn"
-                      onClick={handleEmailVerification}
-                    >
+                  <div>
+                    <Button className="prof-btn" onClick={() => setOpen2(true)}>
                       Verify
-                    </button>
-                  )}
+                    </Button>
+                    <Modal
+                      aria-labelledby="modal-title"
+                      aria-describedby="modal-desc"
+                      open={open2}
+                      onClose={() => setOpen2(false)}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Sheet
+                        variant="outlined"
+                        sx={{
+                          maxWidth: 500,
+                          borderRadius: "md",
+                          p: 3,
+                          boxShadow: "lg",
+                        }}
+                      >
+                        <ModalClose variant="plain" sx={{ m: 1 }} />
+                        <Typography
+                          component="h2"
+                          id="modal-title"
+                          level="h4"
+                          textColor="inherit"
+                          fontWeight="lg"
+                          mb={1}
+                        >
+                          Verification
+                        </Typography>
+                        <Typography id="modal-desc" textColor="text.tertiary">
+                          Do you want to confirm your account?
+                        </Typography>
+                        <form onSubmit={handleSumbit}>
+                          <div className="d-flex justify-content-between">
+                            <Button
+                              className="mt-2 modal-hide-btn"
+                              onClick={() => setOpen2(false)}
+                            >
+                              Cancel
+                            </Button>
+                            <button
+                              onClick={handleEmailVerification}
+                              className="mt-2 reset-pass-btn text-white"
+                            >
+                              Verify
+                            </button>
+                          </div>
+                        </form>
+                      </Sheet>
+                    </Modal>
+                  </div>
                 </div>
               </div>
               <div className="prof-box">
                 <div className="prof-box-d">
                   <h5>Change Username</h5>
                   <div>
-                    <Button
-                      variant="outlined"
-                      color="neutral"
-                      className="prof-btn"
-                      onClick={() => setOpen(true)}
-                    >
+                    <Button className="prof-btn" onClick={() => setOpen(true)}>
                       Change
                     </Button>
                     <Modal
@@ -203,12 +264,14 @@ const Profile = () => {
                         >
                           Change Username
                         </Typography>
-                        <Typography id="modal-desc" textColor="text.tertiary">
-                          {/* Make sure to use <code>aria-labelledby</code> on the
-                          modal dialog with an optional{" "}
-                          <code>aria-describedby</code> attribute. */}
+                        <Typography
+                          id="modal-desc"
+                          level="h6"
+                          mb={1}
+                          textColor="text.tertiary"
+                        >
+                          You can change your username here!
                         </Typography>
-
                         <form onSubmit={handleSumbit}>
                           <Input
                             placeholder="Username..."
@@ -242,8 +305,6 @@ const Profile = () => {
                   {currentUser?.emailVerified ? (
                     <div>
                       <Button
-                        variant="outlined"
-                        color="neutral"
                         className="prof-btn"
                         onClick={() => setOpen1(true)}
                       >
@@ -280,12 +341,14 @@ const Profile = () => {
                           >
                             Reset Password
                           </Typography>
-                          {/* <Typography id="modal-desc" textColor="text.tertiary">
-                          Make sure to use <code>aria-labelledby</code> on the
-                          modal dialog with an optional{" "}
-                          <code>aria-describedby</code> attribute.
-                        </Typography> */}
-
+                          <Typography
+                            id="modal-desc"
+                            level="h6"
+                            mb={1}
+                            textColor="text.tertiary"
+                          >
+                            You can change your password here!
+                          </Typography>
                           <form onSubmit={handleResetSumbit}>
                             <Input
                               placeholder="Password..."
@@ -314,8 +377,6 @@ const Profile = () => {
                   ) : (
                     <div>
                       <Button
-                        variant="outlined"
-                        color="neutral"
                         className="prof-btn"
                         onClick={() => setOpen1(true)}
                       >
@@ -382,12 +443,7 @@ const Profile = () => {
               <div className="prof-box">
                 <div className="prof-box-d">
                   <h5>Logout</h5>
-                  <Button
-                    variant="outlined"
-                    color="neutral"
-                    className="prof-btn"
-                    onClick={() => setOpen3(true)}
-                  >
+                  <Button className="prof-btn" onClick={() => setOpen3(true)}>
                     Logout
                   </Button>
                   <Modal

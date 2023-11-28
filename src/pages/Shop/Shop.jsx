@@ -33,6 +33,9 @@ const Shop = () => {
       setLoading(false);
     });
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [products]);
 
   const filteredProduct = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
@@ -108,6 +111,7 @@ const Shop = () => {
       setProducts(originalProducts);
     }
   };
+  
   return (
     <div className="shop mt-5">
       <Helmet>
@@ -188,7 +192,7 @@ const Shop = () => {
                         </p>
                         <div className="btn-box">
                           <button
-                            className="btn-cart"
+                            className="btn-cart press-effect"
                             onClick={() => addToCartHandle(item)}
                           >
                             <span>

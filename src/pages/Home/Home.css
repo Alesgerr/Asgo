@@ -207,6 +207,10 @@
 .home-slider-img {
   height: 335px;
   width: 100%;
+
+}
+.sect-2 .home-slider .slick-slide div {
+  margin: 0;
 }
 /* ! Section 3 */
 .sect-3 {
@@ -216,6 +220,7 @@
 .sect-3 .flash-card {
   padding: 0 5px;
 }
+
 @media (min-width: 1366px) {
    .menu-holder {
       display: block;

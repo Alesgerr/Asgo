@@ -30,9 +30,14 @@ const Home = () => {
     setDataList(data);
     setLoading(false);
   };
+
   useEffect(() => {
     fetchData();
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [datas]);
+
   const pageTitle = "Welcome to Our Website";
   const pageDescription = "Explore our website and discover amazing content.";
   const categoryImageUrls = {

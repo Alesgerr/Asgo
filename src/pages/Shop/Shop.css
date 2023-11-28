@@ -49,7 +49,9 @@
   border: none;
   background-color: #fff;
 }
-
+.flashCard:hover .btn-cart {
+  display: block;
+}
 @media (max-width: 678px) {
  
   

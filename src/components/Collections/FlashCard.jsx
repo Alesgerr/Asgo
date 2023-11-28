@@ -122,7 +122,6 @@ const FlashCard = () => {
           </div>
           <Slider {...settings}>
             {group.items.map((item, i) => (
-              <>
                 <article className="card" key={i}>
                   <Link to={`/product/${item.id}`}>
                     <div className="card__img">
@@ -134,10 +133,6 @@ const FlashCard = () => {
                     <p>{item.title}</p>
                   </div>
                   <div className="card__precis">
-                    <a href="" className="card__icon">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </a>
-
                     <div>
                       <span className="card__preci card__preci--before">
                         %{item.discountPercentage}
@@ -146,7 +141,7 @@ const FlashCard = () => {
                         ${item.price}
                       </span>
                     </div>
-                    <button className="btn-cart"
+                    <button className="btn-cart press-effect"
                       onClick={() => addToCartHandle(item)}
                     >
                       <span>
@@ -155,7 +150,6 @@ const FlashCard = () => {
                     </button>
                   </div>
                 </article>
-              </>
             ))}
           </Slider>
         </div>

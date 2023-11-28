@@ -66,7 +66,6 @@ const ProductDetail = () => {
   const handleDecrement = () => {
     dispatch(cartActions.decrementItem(product.id));
   };
-  console.log(product);
   const Loading = () => {
     return (
       <>
@@ -372,7 +371,7 @@ const ProductDetail = () => {
                       </p>
                       <div className="btn-box">
                         <button
-                          className="btn-cart"
+                          className="btn-cart press-effect"
                           onClick={() => addToCartHandle(item)}
                         >
                           <span>

@@ -27,6 +27,8 @@ const CategoryDetail = () => {
     };
     getProduct();
   }, [id]);
+ 
+
   const Loading = () => {
     return (
       <>
