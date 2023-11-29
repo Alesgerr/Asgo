@@ -18,21 +18,20 @@ const cartSlice = createSlice({
       const existingItem = state.cartItems.find((item) => item.id === newItem.id);
 
       if (!existingItem) {
-        state.cartItems.push({
+        state.cartItems = [...state.cartItems, {
           id: newItem.id,
           title: newItem.title,
           image: newItem.images,
           price: newItem.price,
           quantity: 1,
           totalPrice: newItem.price,
-        });
-        state.totalQuantity++;
+        }];
       } else {
         existingItem.quantity++;
         existingItem.totalPrice += newItem.price;
       }
-      state.totalAmount = calculateTotalAmount(state.cartItems);
       state.totalQuantity = calculateTotalQuantity(state.cartItems);
+      state.totalAmount = calculateTotalAmount(state.cartItems);
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
@@ -42,8 +41,8 @@ const cartSlice = createSlice({
       if (itemToIncrement) {
         itemToIncrement.quantity++;
         itemToIncrement.totalPrice += itemToIncrement.price;
-        state.totalAmount = calculateTotalAmount(state.cartItems);
         state.totalQuantity = calculateTotalQuantity(state.cartItems);
+        state.totalAmount = calculateTotalAmount(state.cartItems);
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
     },
@@ -55,19 +54,18 @@ const cartSlice = createSlice({
           itemToDecrement.quantity--;
           itemToDecrement.totalPrice -= itemToDecrement.price;
         } else {
-          // Eğer miktar 1'den küçükse, öğeyi kaldır
           state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
         }
-        state.totalAmount = calculateTotalAmount(state.cartItems);
         state.totalQuantity = calculateTotalQuantity(state.cartItems);
+        state.totalAmount = calculateTotalAmount(state.cartItems);
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
     },
     removeItem: (state, action) => {
       const itemId = action.payload;
       state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
-      state.totalAmount = calculateTotalAmount(state.cartItems);
       state.totalQuantity = calculateTotalQuantity(state.cartItems);
+      state.totalAmount = calculateTotalAmount(state.cartItems);
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
   },

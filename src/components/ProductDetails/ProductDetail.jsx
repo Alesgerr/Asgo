@@ -23,8 +23,8 @@ const ProductDetail = () => {
   const [product, setProduct] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [img, setImg] = useState([]);
+
   const addToCartHandle = (item) => {
     dispatch(
       cartActions.addItem({
@@ -33,6 +33,16 @@ const ProductDetail = () => {
       })
     );
   };
+  const buyNowHandle = () => {
+    dispatch(
+      cartActions.addItem({
+        ...product,
+        quantity: 1,
+      })
+    );
+    history.push('/checkout');
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -57,15 +67,17 @@ const ProductDetail = () => {
 
     fetchData();
   }, [id]);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [product]);
-  const handleIncrement = () => {
-    dispatch(cartActions.incrementItem(product.id));
-  };
-  const handleDecrement = () => {
-    dispatch(cartActions.decrementItem(product.id));
-  };
+
+  // const handleIncrement = () => {
+  //   dispatch(cartActions.incrementItem(product.id));
+  // };
+  // const handleDecrement = () => {
+  //   dispatch(cartActions.decrementItem(product.id));
+  // };
   const Loading = () => {
     return (
       <>
@@ -288,6 +300,7 @@ const ProductDetail = () => {
                             <button
                               type="button"
                               className="payment-btn product-info-btn"
+                              onClick={buyNowHandle}
                             >
                               Buy it now
                             </button>
