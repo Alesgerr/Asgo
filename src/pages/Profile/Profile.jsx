@@ -168,9 +168,13 @@ const Profile = () => {
                     )}
                   </div>
                   <div>
+                    {currentUser?.emailVerified ? (
+                      ""
+                    ) 
+                    : 
                     <Button className="prof-btn" onClick={() => setOpen2(true)}>
-                      Verify
-                    </Button>
+                      Verifyss
+                    </Button>}
                     <Modal
                       aria-labelledby="modal-title"
                       aria-describedby="modal-desc"
